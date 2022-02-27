@@ -81,7 +81,7 @@ services:
     extends: test-cpu-base
     build:
       args:
-        TENSORFLOW_PACKAGE: tensorflow-cpu==2.7.1
+        TENSORFLOW_PACKAGE: tensorflow-cpu==2.7.0
         KERAS_PACKAGE: keras==2.7.0
         PYTORCH_PACKAGE: torch==1.9.1+cpu
         TORCHVISION_PACKAGE: torchvision==0.10.1
@@ -178,7 +178,7 @@ services:
         CUDA_DOCKER_VERSION: 11.2.2-devel-ubuntu20.04
         CUDNN_VERSION: 8.1.1.33-1+cuda11.2
         NCCL_VERSION_OVERRIDE: 2.8.4-1+cuda11.2
-        TENSORFLOW_PACKAGE: tensorflow-gpu==2.7.1
+        TENSORFLOW_PACKAGE: tensorflow-gpu==2.7.0
         KERAS_PACKAGE: keras==2.7.0
         PYTORCH_PACKAGE: torch==1.9.1+cu111
         PYTORCH_LIGHTNING_PACKAGE: pytorch_lightning==1.3.8
