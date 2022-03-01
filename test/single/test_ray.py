@@ -22,17 +22,21 @@ sys.path.append(os.path.dirname(__file__))
 @pytest.fixture
 def ray_start_2_cpus():
     address_info = ray.init(num_cpus=2)
-    yield address_info
-    # The code after the yield will run as teardown code.
-    ray.shutdown()
+    try:
+        yield address_info
+    finally:
+        # The code after the yield will run as teardown code.
+        ray.shutdown()
 
 
 @pytest.fixture
 def ray_start_4_cpus():
     address_info = ray.init(num_cpus=4, _redis_max_memory=1024 * 1024 * 1024)
-    yield address_info
-    # The code after the yield will run as teardown code.
-    ray.shutdown()
+    try:
+        yield address_info
+    finally:
+        # The code after the yield will run as teardown code.
+        ray.shutdown()
 
 
 @pytest.fixture
@@ -53,12 +57,12 @@ def ray_start_4_cpus_4_gpus():
     try:
         yield address_info
         # The code after the yield will run as teardown code.
-        ray.shutdown()
     finally:
         if orig_devices:
             os.environ["CUDA_VISIBLE_DEVICES"] = orig_devices
         else:
             del os.environ["CUDA_VISIBLE_DEVICES"]
+        ray.shutdown()
 
 
 @pytest.fixture
